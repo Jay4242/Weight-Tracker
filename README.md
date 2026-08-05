@@ -1,5 +1,7 @@
 # Weight Tracker
 
+![Screenshot.png](Screenshot.png)
+
 Locally hosted, full-stack weight tracking web app. Log daily weight, view a 31-day graph showing actual weight vs. 7-day rolling average, and see calorie/body-metric projections (BMR, TDEE, deficit, goal timeline).
 
 ## Features
