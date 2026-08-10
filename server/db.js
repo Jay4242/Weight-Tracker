@@ -47,6 +47,14 @@ function initSchema() {
   if (!hasUseAvgWeight) {
     db.prepare("ALTER TABLE settings ADD COLUMN use_avg_weight INTEGER NOT NULL DEFAULT 0").run();
   }
+
+  const hasTimezone = db
+    .prepare("PRAGMA table_info(settings)")
+    .all()
+    .some((c) => c.name === "timezone");
+  if (!hasTimezone) {
+    db.prepare("ALTER TABLE settings ADD COLUMN timezone TEXT NOT NULL DEFAULT 'UTC'").run();
+  }
 }
 
 module.exports = { getDb };

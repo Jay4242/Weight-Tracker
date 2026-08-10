@@ -3,13 +3,21 @@ import WeightForm from "./WeightForm";
 import WeightChart from "./WeightChart";
 import MetricsPanel from "./MetricsPanel";
 import { fetchSettings, saveSettings } from "../api";
+import { getBrowserTimezone } from "../utils";
 
 export default function Dashboard() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [useAvgWeight, setUseAvgWeight] = useState(false);
 
   useEffect(() => {
-    fetchSettings().then((s) => setUseAvgWeight(s.use_avg_weight));
+    fetchSettings().then(async (s) => {
+      setUseAvgWeight(s.use_avg_weight);
+
+      if (s.timezone === "UTC" && getBrowserTimezone() !== "UTC") {
+        await saveSettings({ timezone: getBrowserTimezone() });
+        setRefreshKey((k) => k + 1);
+      }
+    });
   }, []);
 
   const triggerRefresh = useCallback(() => {

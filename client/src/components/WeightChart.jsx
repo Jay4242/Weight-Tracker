@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { fetchWeights } from "../api";
+import { formatLocalDate } from "../utils";
 
 function fmtDate(d) {
   const parts = d.split("-");
@@ -22,7 +23,7 @@ function padData(entries) {
   for (let i = 30; i >= 0; i--) {
     const d = new Date(today);
     d.setDate(d.getDate() - i);
-    dates.push(d.toISOString().slice(0, 10));
+    dates.push(formatLocalDate(d));
   }
 
   const weightMap = {};

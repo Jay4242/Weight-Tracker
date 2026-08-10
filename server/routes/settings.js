@@ -10,6 +10,7 @@ const FIELDS = [
   "tdee_factor",
   "calorie_target",
   "use_avg_weight",
+  "timezone",
 ];
 
 router.get("/", (_req, res) => {

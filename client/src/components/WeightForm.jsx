@@ -1,12 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { saveWeight, fetchWeights, fetchMetrics } from "../api";
-
-function todayStr() {
-  return new Date().toISOString().slice(0, 10);
-}
+import { todayStrLocal } from "../utils";
 
 export default function WeightForm({ onDataChanged }) {
-  const [date, setDate] = useState(todayStr());
+  const [date, setDate] = useState(todayStrLocal());
   const [weight, setWeight] = useState("");
   const [saving, setSaving] = useState(false);
   const [metrics, setMetrics] = useState(null);
